@@ -12,7 +12,7 @@ const Contato = () => {
         <div className="flex items-center justify-center gap-3">
           <FaWhatsapp className="text-green-500 text-2xl" />
           <p>
-            WhatsApp: <a href="https://wa.me/551153111056" target="_blank" className="text-blue-600 hover:underline">Clique aqui</a>
+            WhatsApp: <a href="https://wa.me/5511953111056" target="_blank" className="text-blue-600 hover:underline">Clique aqui</a>
           </p>
         </div>
 
