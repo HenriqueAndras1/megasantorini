@@ -1,3 +1,4 @@
+import { FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -18,7 +19,7 @@ const Navbar = () => {
         {/* H1 CENTRALIZADO */}
         <h1 className="absolute left-1/2 transform -translate-x-1/2 text-red-500 font-bold text-sm md:text-base flex flex-col md:flex-row items-center text-center">
           <span>📢 VENDAS APENAS SHOPEE OU WHATSAPP</span>
-          <div className="text-green-500 md:ml-2 mt-1 md:mt-0" />
+          <FaWhatsapp className="text-green-500 md:ml-2 mt-1 md:mt-0" />
         </h1>
 
         {/* Links */}
