@@ -1,0 +1,58 @@
+import { Produto } from './produtos';
+
+export const camisetas: Produto[] = [
+  {
+    id: 1,
+    nome: 'Camiseta Nike',
+    marca: 'Nike',
+    imagem: '/produtos/camisetas/nike.jpg',
+    logoMarca: '/marcas/nike-logo.png',
+    categoria: 'camisetas',
+    linkShopee: 'https://shopee.com.br/camiseta-nike',
+  },
+  {
+    id: 2,
+    nome: 'Camiseta Adidas',
+    marca: 'Adidas',
+    imagem: '/produtos/camisetas/adidas.jpg',
+    logoMarca: '/marcas/adidas-logo.png',
+    categoria: 'camisetas',
+    linkShopee: 'https://shopee.com.br/camiseta-adidas',
+  },
+  {
+    id: 3,
+    nome: 'Camiseta Lacoste',
+    marca: 'Lacoste',
+    imagem: '/produtos/camisetas/lacoste.jpg',
+    logoMarca: '/marcas/lacoste-logo.png',
+    categoria: 'camisetas',
+    linkShopee: 'https://shopee.com.br/camiseta-lacoste',
+  },
+  {
+    id: 4,
+    nome: 'Camiseta Oakley',
+    marca: 'Oakley',
+    imagem: '/produtos/camisetas/oakley.jpg',
+    logoMarca: '/marcas/oakley-logo.png',
+    categoria: 'camisetas',
+    linkShopee: 'https://shopee.com.br/camiseta-oakley',
+  },
+  {
+    id: 5,
+    nome: 'Camiseta Hugo Boss',
+    marca: 'Hugo Boss',
+    imagem: '/produtos/camisetas/hugo.jpg',
+    logoMarca: '/marcas/hugo-logo.png',
+    categoria: 'camisetas',
+    linkShopee: 'https://shopee.com.br/camiseta-hugo-boss',
+  },
+  {
+    id: 6,
+    nome: 'Camiseta Calvin Klein',
+    marca: 'Calvin Klein',
+    imagem: '/produtos/camisetas/ck.jpg',
+    logoMarca: '/marcas/ck-logo.png',
+    categoria: 'camisetas',
+    linkShopee: 'https://shopee.com.br/camiseta-calvin-klein',
+  },
+];
