@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <section className="py-12 px-4 text-center">
-      <h1 className="text-4xl font-bold mb-4">Bem-vindo à Mega Santorini</h1>
+      <h1 className="text-4xl font-bold mb-4">Bem-vindo à Outlet Mega Santorini</h1>
       <p className="text-gray-700 text-lg max-w-xl mx-auto mb-8">
         Aqui você encontra camisetas e produtos estilosos para todos os gostos.
         Confira nossa vitrine e entre em contato para comprar via Shopee ou Whatsapp.
