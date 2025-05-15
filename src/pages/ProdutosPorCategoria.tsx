@@ -1,16 +1,24 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useParams } from 'react-router-dom';
-import { camisetas, moletons, calcas,} from '../data';
-import { Produto } from '../data/produtos';
-
 import { useState } from 'react';
+import { camisetas, calca, bermuda, polo, tShirtsFemininas, bobojaco, tenis, cueca, meia, plusSize, Produto, moletom, } from '../data';
 import { categorias } from '../data/categorias';
 
+
 const produtosPorCategoria: Record<string, Produto[]> = {
-  camisetas,
-  moletons,
-  calcas,
+  camisetas,           // slug: "camisetas"
+  calca,       // slug: "calca"
+  bermuda,
+  plusSize,
+  polo,
+  tShirtsFemininas,
+  bobojaco,
+  tenis,
+  cueca,
+  meia,
+  moletom,
 };
+
 
 const ProdutosPorCategoria = () => {
   const { categoria } = useParams<{ categoria?: string }>();
@@ -22,21 +30,46 @@ const ProdutosPorCategoria = () => {
 
   const produtos = produtosPorCategoria[categoriaInfo.slug] || [];
 
+  const [favoritos, setFavoritos] = useState<number[]>(() => {
+    const savedFavorites = localStorage.getItem('favoritos');
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
+
+  const toggleFavorito = (produtoId: number) => {
+    const novosFavoritos = favoritos.includes(produtoId)
+      ? favoritos.filter(id => id !== produtoId)
+      : [...favoritos, produtoId];
+
+    setFavoritos(novosFavoritos);
+    localStorage.setItem('favoritos', JSON.stringify(novosFavoritos)); // Salva no localStorage
+  };
+
   const [selectedBrand, setSelectedBrand] = useState<string | "">("");
   const [selectedSize, setSelectedSize] = useState<string | "">("");
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(5000); // Ajuste os valores padrão
+  const [sortOrder, setSortOrder] = useState<"" | "asc" | "desc">("");
 
   const filterProducts = () => {
     return produtos.filter((produto) => {
       const matchesBrand = selectedBrand === "" || produto.marca === selectedBrand;
       const matchesSize = selectedSize === "" || produto.tamanhos?.includes(selectedSize);
-      return matchesBrand && matchesSize;
+      const matchesMinPrice = produto.preco >= minPrice;
+      const matchesMaxPrice = produto.preco <= maxPrice;
+      return matchesBrand && matchesSize && matchesMinPrice && matchesMaxPrice;
     });
   };
 
+  const filteredProducts = filterProducts();
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOrder === "asc") return a.preco - b.preco;
+    if (sortOrder === "desc") return b.preco - a.preco;
+    return 0;
+  });
+
   const allBrands = Array.from(new Set(produtos.map(produto => produto.marca)));
   const allSizes = Array.from(new Set(produtos.flatMap(produto => produto.tamanhos)));
-
-  const filteredProducts = filterProducts();
 
   const [isBrandOpen, setIsBrandOpen] = useState(false);
   const [isSizeOpen, setIsSizeOpen] = useState(false);
@@ -98,44 +131,126 @@ const ProdutosPorCategoria = () => {
             </div>
           )}
         </div>
+
+        {/* Preço */}
+        <div className="border rounded-md">
+          <div className="w-full p-2 text-base font-semibold bg-gray-200">
+            Preço
+          </div>
+          <div className="p-2">
+            <div className="flex justify-between text-sm">
+              <span>R$ {minPrice}</span>
+              <span>R$ {maxPrice}</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              value={minPrice}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+              className="w-full mb-2"
+            />
+            <input
+              type="range"
+              min="0"
+              max="1000"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
+              className="w-full"
+            />
+          </div>
+        </div>
+
+        {/* Ordenar por preço */}
+        <div className="border rounded-md">
+          <div className="w-full p-2 text-base font-semibold bg-gray-200">
+            Ordenar por preço
+          </div>
+          <div className="p-2">
+            <select
+              className="p-2 border rounded-md w-full"
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value as "asc" | "desc" | "")}
+            >
+              <option value="">Sem ordenação</option>
+              <option value="asc">Menor preço</option>
+              <option value="desc">Maior preço</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      {/* Cards */}
-      <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {filteredProducts.map((produto) => (
-          <div key={produto.id} className="border rounded-xl p-4 shadow-md bg-white max-w-xs mx-2 flex flex-col">
-            <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-2 bg-gray-100">
-              <img
-                src={produto.imagem}
-                alt={produto.nome}
-                className="object-cover w-full h-full"
-              />
-            </div>
-
-            <h3 className="text-base sm:text-lg font-medium text-center mb-2 flex-grow">
-              {produto.nome}
-            </h3>
-
-            <div className="flex justify-center mb-2">
-              <img
-                src={produto.logoMarca}
-                alt={produto.marca}
-                className="h-8"
-              />
-            </div>
-
-            <div className="flex justify-center">
-              <a
-                href={produto.linkShopee}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-blue-600 text-white px-3 py-1.5 text-sm sm:text-base rounded hover:bg-blue-700"
-              >
-                Ver na Shopee
-              </a>
-            </div>
+      {/* Lista de produtos */}
+      <div className="w-full">
+        {sortedProducts.length === 0 ? (
+          <div className="text-center text-gray-500 py-12">
+            Nenhum produto disponível no momento.
           </div>
-        ))}
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {sortedProducts.map((produto) => (
+              <div key={produto.id} className="border rounded-xl p-4 shadow-md bg-white max-w-xs mx-2 flex flex-col relative">
+                {/* Coração no canto superior direito */}
+                <button
+                  onClick={() => toggleFavorito(produto.id)}
+                  className={`absolute top-2 right-2 text-3xl ${favoritos.includes(produto.id) ? 'text-red-500' : 'text-white'}`}
+                >
+                  {favoritos.includes(produto.id) ? '❤️' : '🤍'}
+                </button>
+
+                <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-2 bg-gray-100">
+                  <img
+                    src={produto.imagem}
+                    alt={produto.nome}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+
+                <h3 className="text-base sm:text-lg font-medium text-center mb-2 flex-grow">
+                  {produto.nome}
+                </h3>
+
+                <div className="flex justify-center mb-2">
+                  <img
+                    src={produto.logoMarca}
+                    alt={produto.marca}
+                    className="h-8"
+                  />
+                </div>
+
+                <p className="text-center text-sm text-gray-700 mb-2">
+                  R$ {produto.preco.toFixed(2)}
+                </p>
+
+                {/* Tamanhos */}
+                {produto.tamanhos && (
+                  <div className="flex flex-wrap justify-center gap-1 mb-2">
+                    {produto.tamanhos.map((tamanho, idx) => (
+                      <span
+                        key={idx}
+                        className="border px-2 py-0.5 text-xs rounded text-gray-700 bg-gray-100"
+                      >
+                        {tamanho}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Link para o produto */}
+                <div className="flex justify-center">
+                  <a
+                    href={produto.linkShopee}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-blue-600 text-white px-3 py-1.5 text-sm sm:text-base rounded hover:bg-blue-700"
+                  >
+                    Ver na Shopee
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

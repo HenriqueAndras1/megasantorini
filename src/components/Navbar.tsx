@@ -26,6 +26,7 @@ const Navbar = () => {
         <div className="flex flex-col md:flex-row text-white space-y-2 md:space-x-4 md:space-y-0 mt-4 md:mt-0">
           <Link to="/" className={linkClass}>Home</Link>
           <Link to="/produtos" className={linkClass}>Produtos</Link>
+          <Link to="/favoritos" className={linkClass}>Lista de Desejos</Link>
           <Link to="/sobre" className={linkClass}>Sobre</Link>
           <Link to="/contato" className={linkClass}>Contato</Link>
         </div>

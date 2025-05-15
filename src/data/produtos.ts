@@ -3,9 +3,9 @@ export type Categoria =
   | "moletom"
   | "calca"
   | "bermuda"
-  | "plus-size"
+  | "plusSize"
   | "polo"
-  | "t-shirts-femininas"
+  | "tShirtsFemininas"
   | "bobojaco"
   | "tenis"
   | "cueca"
@@ -16,11 +16,14 @@ export type Categoria =
     id: number;
     nome: string;
     marca: string;
+    preco: number;
     imagem: string;
     logoMarca: string;
     categoria: Categoria;
     tamanhos?: string[];
+    estoque: number; 
     linkShopee?: string;
   }
+  
   
   
