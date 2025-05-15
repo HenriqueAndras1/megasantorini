@@ -1,19 +1,23 @@
 import { FaWhatsapp } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const linkClass =
     "inline-block font-bold hover:scale-105 transition-transform duration-200";
+
+  const isActive = (path: string) => location.pathname === path;
+
+  const activeClass = "bg-blue-600 rounded px-2";
 
   return (
     <nav className="bg-slate-800 shadow w-full min-h-[80px]">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center w-full">
-
           {/* LOGO */}
           <div className="flex-shrink-0 flex-grow-0">
             <Link to="/" className="hover:scale-105 transition-transform duration-200">
@@ -25,7 +29,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* CENTRO: mostra H1 quando menu fechado, ou links quando aberto (mobile only) */}
+          {/* CENTRO */}
           <div className="flex-grow text-center text-red-500 font-bold text-sm md:text-base flex items-center justify-center min-w-0 px-2">
             {/* Desktop: sempre mostra o H1 */}
             <div className="hidden md:flex items-center">
@@ -50,36 +54,31 @@ const Navbar = () => {
               <div className="flex flex-col space-y-1 md:hidden text-white">
                 <Link
                   to="/"
-                  className={linkClass + " block"}
-                  onClick={() => setMenuOpen(false)}
+                  className={`${linkClass} block ${isActive("/") ? activeClass : ""}`}
                 >
                   Home
                 </Link>
                 <Link
                   to="/produtos"
-                  className={linkClass + " block"}
-                  onClick={() => setMenuOpen(false)}
+                  className={`${linkClass} block ${isActive("/produtos") ? activeClass : ""}`}
                 >
                   Produtos
                 </Link>
                 <Link
                   to="/favoritos"
-                  className={linkClass + " block"}
-                  onClick={() => setMenuOpen(false)}
+                  className={`${linkClass} block ${isActive("/favoritos") ? activeClass : ""}`}
                 >
                   Lista de Desejos
                 </Link>
                 <Link
                   to="/sobre"
-                  className={linkClass + " block"}
-                  onClick={() => setMenuOpen(false)}
+                  className={`${linkClass} block ${isActive("/sobre") ? activeClass : ""}`}
                 >
                   Sobre Nós
                 </Link>
                 <Link
                   to="/contato"
-                  className={linkClass + " block"}
-                  onClick={() => setMenuOpen(false)}
+                  className={`${linkClass} block ${isActive("/contato") ? activeClass : ""}`}
                 >
                   Contato
                 </Link>
@@ -101,14 +100,23 @@ const Navbar = () => {
           {/* LINKS DESKTOP */}
           <div className="hidden md:flex flex-shrink-0 flex-grow-0">
             <div className="flex flex-col items-end text-white space-y-1 md:flex-row md:space-y-0 md:space-x-4">
-              <Link to="/" className={linkClass}>Home</Link>
-              <Link to="/produtos" className={linkClass}>Produtos</Link>
-              <Link to="/favoritos" className={linkClass}>Lista de Desejos</Link>
-              <Link to="/sobre" className={linkClass}>Sobre Nós</Link>
-              <Link to="/contato" className={linkClass}>Contato</Link>
+              <Link to="/" className={`${linkClass} ${isActive("/") ? activeClass : ""}`}>
+                Home
+              </Link>
+              <Link to="/produtos" className={`${linkClass} ${isActive("/produtos") ? activeClass : ""}`}>
+                Produtos
+              </Link>
+              <Link to="/favoritos" className={`${linkClass} ${isActive("/favoritos") ? activeClass : ""}`}>
+                Lista de Desejos
+              </Link>
+              <Link to="/sobre" className={`${linkClass} ${isActive("/sobre") ? activeClass : ""}`}>
+                Sobre Nós
+              </Link>
+              <Link to="/contato" className={`${linkClass} ${isActive("/contato") ? activeClass : ""}`}>
+                Contato
+              </Link>
             </div>
           </div>
-
         </div>
       </div>
     </nav>
