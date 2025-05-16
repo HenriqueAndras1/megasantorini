@@ -9,9 +9,11 @@ export const bobojaco: Produto[] = [
     estoque: 1,
     tamanhos: ['G','G1','G2'],
     imagem: '/produtos/bobojaco/bobojaco1.png',
+    imagensSecundarias: [],
     logoMarca: '/marcas/nike-logo.png',
     categoria: 'bobojaco',
     linkShopee: 'https://shopee.com.br/bobojaco-masculino-zara',
+    cor: "Bege",
   },
   {
     id: 702,
@@ -21,8 +23,10 @@ export const bobojaco: Produto[] = [
     estoque: 1,
     tamanhos: ['G','G1','G2'],
     imagem: '/produtos/bobojaco/bobojaco2.png',
+    imagensSecundarias: [],
     logoMarca: '/marcas/nike-logo.png',
     categoria: 'bobojaco',
     linkShopee: 'https://shopee.com.br/bobojaco-masculino-zara',
+    cor: "Cinza Escuro",
   },
 ];

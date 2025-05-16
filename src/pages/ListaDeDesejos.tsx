@@ -1,11 +1,38 @@
 import { useState, useEffect } from "react";
-import { bermuda, bobojaco, calca, camisetas, cueca, meia, moletom, plusSize, polo, Produto, tenis, tShirtsFemininas } from "../data";
+import { Link, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import {
+  bermuda,
+  bobojaco,
+  calca,
+  camisetas,
+  cueca,
+  meia,
+  moletom,
+  plusSize,
+  polo,
+  Produto,
+  tenis,
+  tShirtsFemininas
+} from "../data";
 
-
-const todosProdutos: Produto[] = [...camisetas, ...moletom, ...calca, ...bermuda, ...plusSize, ...polo, ...tShirtsFemininas, ...bobojaco, ...tenis, ...cueca, ...meia];
+const todosProdutos: Produto[] = [
+  ...camisetas,
+  ...moletom,
+  ...calca,
+  ...bermuda,
+  ...plusSize,
+  ...polo,
+  ...tShirtsFemininas,
+  ...bobojaco,
+  ...tenis,
+  ...cueca,
+  ...meia
+];
 
 const ListaDeDesejos = () => {
   const [favoritos, setFavoritos] = useState<Produto[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favoritos");
@@ -29,6 +56,18 @@ const ListaDeDesejos = () => {
 
   return (
     <section className="py-12 px-4">
+      {/* Botão de voltar */}
+      <div className="max-w-xs text-left">
+        <button
+          onClick={() => navigate("/produtos")}
+          className="cursor-pointer flex items-center gap-2 text-black px-4 py-2 rounded text-lg font-semibold hover:text-blue-600 transition"
+          aria-label="Voltar"
+        >
+          <FaArrowLeft />
+          Voltar
+        </button>
+      </div>
+
       <h2 className="text-center text-2xl font-bold mb-8">
         Sua Lista de Desejos
       </h2>
@@ -80,14 +119,12 @@ const ListaDeDesejos = () => {
               )}
 
               <div className="flex justify-center">
-                <a
-                  href={produto.linkShopee}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-blue-600 text-white px-3 py-1.5 text-sm sm:text-base rounded hover:bg-blue-700"
-                >
-                  Ver na Shopee
-                </a>
+                <Link
+                to="/contato"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded text-lg font-semibold"
+              >
+                Comprar
+              </Link>
               </div>
             </div>
           ))}

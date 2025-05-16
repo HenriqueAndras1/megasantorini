@@ -8,6 +8,7 @@ import Contato from "./pages/Contato";
 import Sobre from "./pages/Sobre";
 import Produtos from "./pages/Produtos";
 import ListaDeDesejos from "./pages/ListaDeDesejos";
+import ProdutoDetalhe from "./pages/ProdutoDetalhe";
 
 function App() {
   return (
@@ -20,12 +21,9 @@ function App() {
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
-            <Route
-              path="/produtos/:categoria"
-              element={<ProdutosPorCategoria />}
-            />
+            <Route path="/produtos/:categoria" element={<ProdutosPorCategoria />}/>
             <Route path="/favoritos" element={<ListaDeDesejos />} />{" "}
-            {/* <- Aqui */}
+            <Route path="/produto/:categoria/:id" element={<ProdutoDetalhe />} />
           </Routes>
         </div>
         <Footer />

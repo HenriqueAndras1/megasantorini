@@ -17,14 +17,16 @@ export type Categoria =
   nome: string;
   marca: string;
   preco: number;
-  imagem: string;
+  imagem: string; // imagem principal
+  imagensSecundarias?: string[]; // <- adicione esta linha
   logoMarca: string;
   categoria: Categoria;
   tamanhos?: string[];
   estoque: number;
   linkShopee?: string;
-  cor?: string; 
+  cor?: string;
 }
+
   
   
   

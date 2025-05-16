@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -18,13 +19,22 @@ const produtosPorCategoria = todosProdutos.reduce<Record<string, Produto[]>>((ac
 const Home = () => {
   const renderProdutoSlide = (produto: Produto) => (
     <SwiperSlide key={produto.id}>
-      <div className="border rounded-xl p-4 shadow-md bg-white max-w-sm mx-auto">
+      <Link
+        to={`/produto/${produto.categoria}/${produto.id}`}
+        className="block border rounded-xl p-4 shadow-md bg-white max-w-sm mx-auto hover:shadow-lg transition"
+      >
         <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-2 bg-gray-100">
-          <img src={produto.imagem} alt={produto.nome} className="object-cover w-full h-full" />
+          <img
+            src={produto.imagem}
+            alt={produto.nome}
+            className="object-cover w-full h-full"
+          />
         </div>
         <h3 className="text-lg font-medium">{produto.nome}</h3>
-        <img src={produto.logoMarca} alt={produto.marca} className="h-8 mx-auto mt-2" />
-      </div>
+        {produto.logoMarca && (
+          <img src={produto.logoMarca} alt={produto.marca} className="h-8 mx-auto mt-2" />
+        )}
+      </Link>
     </SwiperSlide>
   );
 
@@ -32,7 +42,8 @@ const Home = () => {
     <section className="py-12 px-4 text-center">
       <h1 className="text-4xl font-bold mb-4">Bem-vindo à Outlet Mega Santorini</h1>
       <p className="text-gray-700 text-lg max-w-xl mx-auto mb-8">
-        Aqui você encontra camisetas e produtos estilosos para todos os gostos. Confira nossa vitrine e entre em contato para comprar via Shopee ou Whatsapp.
+        Aqui você encontra camisetas e produtos estilosos para todos os gostos.
+        Confira nossa vitrine e entre em contato para comprar via Shopee ou WhatsApp.
       </p>
 
       <div className="mb-12">
@@ -67,7 +78,10 @@ const Home = () => {
               slidesPerView={1}
               navigation
               autoplay={{ delay: 3000, disableOnInteraction: false }}
-              breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
             >
               {produtos.map(renderProdutoSlide)}
             </Swiper>
