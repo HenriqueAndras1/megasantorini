@@ -20,21 +20,34 @@ const Home = () => {
   const renderProdutoSlide = (produto: Produto) => (
     <SwiperSlide key={produto.id}>
       <Link
-        to={`/produto/${produto.categoria}/${produto.id}`}
-        className="block border rounded-xl p-4 shadow-md bg-white max-w-sm mx-auto hover:shadow-lg transition"
-      >
-        <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-2 bg-gray-100">
-          <img
-            src={produto.imagem}
-            alt={produto.nome}
-            className="object-cover w-full h-full"
-          />
-        </div>
-        <h3 className="text-lg font-medium">{produto.nome}</h3>
-        {produto.logoMarca && (
-          <img src={produto.logoMarca} alt={produto.marca} className="h-8 mx-auto mt-2" />
-        )}
-      </Link>
+  to={`/produto/${produto.categoria}/${produto.id}`}
+  className="block border rounded-xl p-4 shadow-md bg-white max-w-sm mx-auto hover:shadow-lg transition h-[500px] flex flex-col"
+>
+  {/* Imagem */}
+  <div className="w-full aspect-[3/4] overflow-hidden rounded-lg bg-gray-100">
+    <img
+      src={produto.imagem}
+      alt={produto.nome}
+      className="object-cover w-full h-full"
+    />
+  </div>
+
+  {/* Nome do produto */}
+  <div className="mt-4 flex-1">
+    <h3 className="text-lg font-semibold text-center break-words whitespace-normal leading-snug line-clamp-3">
+      {produto.nome}
+    </h3>
+  </div>
+
+  {/* Logo da marca */}
+  {produto.logoMarca && (
+    <div className="mt-4 flex justify-center">
+      <img src={produto.logoMarca} alt={produto.marca} className="h-10" />
+    </div>
+  )}
+</Link>
+
+
     </SwiperSlide>
   );
 

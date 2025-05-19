@@ -3,7 +3,7 @@ import { Produto } from "./produtos";
 export const camisetas: Produto[] = [
   {
     id: 1,
-    nome: "Camiseta Nike",
+    nome: "Camiseta Masculina Nike Estampada Preta",
     marca: "Nike",
     preco: 33.9,
     estoque: 1,
@@ -17,7 +17,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 2,
-    nome: "Camiseta Adidas",
+    nome: "Camiseta Manga Curta Adidas Estampa Bart Simpson",
     marca: "Adidas",
     preco: 33.9,
     estoque: 1,
@@ -31,7 +31,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 3,
-    nome: "Camiseta Lacoste",
+    nome: "Camiseta Lacoste Amarela Lisa",
     marca: "Lacoste",
     preco: 29.9,
     estoque: 1,
@@ -45,7 +45,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 4,
-    nome: "Camiseta Oakley",
+    nome: "Camiseta Manga Curta Oakley Vermelha",
     marca: "Oakley",
     preco: 29.9,
     estoque: 1,
@@ -59,7 +59,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 5,
-    nome: "Camiseta Hang Loose",
+    nome: "Camiseta Estampada Hang Loose",
     marca: "Hang Loose",
     preco: 33.9,
     estoque: 1,
@@ -73,7 +73,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 6,
-    nome: "Camiseta Calvin Klein",
+    nome: "Camiseta Branca Lisa Calvin Klein",
     marca: "Calvin Klein",
     preco: 33.9,
     estoque: 1,
@@ -87,7 +87,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 7,
-    nome: "Camiseta Lacoste",
+    nome: "Camiseta Lacoste Azul Lisa",
     marca: "Lacoste",
     preco: 29.9,
     estoque: 1,
@@ -101,7 +101,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 8,
-    nome: "Camiseta Lacoste",
+    nome: "Camiseta Lacoste Branco Lisa",
     marca: "Lacoste",
     preco: 29.9,
     estoque: 1,
@@ -115,7 +115,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 9,
-    nome: "Camiseta Lacoste",
+    nome: "Camiseta Lacoste Vermelho Lisa",
     marca: "Lacoste",
     preco: 29.9,
     estoque: 1,
@@ -129,7 +129,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 10,
-    nome: "Camiseta Nike",
+    nome: "Camiseta Logo Nike Bordado",
     marca: "Nike",
     preco: 33.9,
     estoque: 1,
@@ -143,7 +143,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 11,
-    nome: "Camiseta Nike",
+    nome: "Camiseta Estampado Nike",
     marca: "Nike",
     preco: 33.9,
     estoque: 1,
@@ -157,7 +157,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 12,
-    nome: 'Camiseta Nike',
+    nome: 'Camiseta Nike Bordado',
     marca: 'Nike',
     preco: 33.90,
     estoque: 1,
@@ -171,7 +171,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 13,
-    nome: 'Camiseta Nike',
+    nome: 'Camiseta Nike Homer Simpson',
     marca: 'Nike',
     preco: 33.90,
     estoque: 1,
@@ -185,7 +185,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 14,
-    nome: "Camiseta Oakley",
+    nome: "Camiseta Estampada Oakley",
     marca: "Oakley",
     preco: 29.9,
     estoque: 1,
@@ -199,7 +199,7 @@ export const camisetas: Produto[] = [
   },
   {
     id: 15,
-    nome: 'Camiseta Nike',
+    nome: 'Camiseta Masculina Nike Estampada Branco',
     marca: 'Nike',
     preco: 33.90,
     estoque: 1,
